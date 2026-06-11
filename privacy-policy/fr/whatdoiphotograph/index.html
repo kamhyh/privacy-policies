@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité — Where Do I Take Photograph</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f5;
+            color: #1a1a1a;
+            margin: 0;
+            padding: 24px 16px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 32px 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 28px;
+            margin: 0 0 4px;
+            color: #5B8FB9;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+        h2 {
+            font-size: 18px;
+            margin-top: 28px;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+        p, li {
+            font-size: 15px;
+            color: #333;
+        }
+        ul {
+            padding-left: 22px;
+        }
+        a {
+            color: #5B8FB9;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        .updated {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            font-size: 13px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Politique de confidentialité</h1>
+        <p class="subtitle">Where Do I Take Photograph (WhatDoIPhotograph) — application Android</p>
+
+        <h2>1. Collecte des données</h2>
+        <p>Where Do I Take Photograph collecte les données suivantes lorsque vous l'utilisez :</p>
+        <ul>
+            <li><strong>Données de localisation</strong> (latitude, longitude, horodatages) : collectées pendant qu'une session d'enregistrement est active, afin de tracer votre itinéraire photographique et de marquer les spots où vous vous arrêtez pour photographier.</li>
+            <li><strong>Photographies</strong> que vous choisissez d'attacher à un spot : stockées sous forme de fichiers JPEG dans le stockage privé de l'application.</li>
+            <li><strong>Métadonnées de session</strong> : titre de la session, durée, distance, notes, évaluations, et les associations entre spots et collections que vous créez.</li>
+            <li><strong>Télémétrie de crashs et d'événements</strong> : rapports de crashs anonymisés et événements d'usage basiques (vues d'écran, interactions de fonctionnalités) envoyés à Firebase Crashlytics et Firebase Analytics afin de diagnostiquer les problèmes et de comprendre quelles fonctionnalités sont utilisées.</li>
+        </ul>
+
+        <h2>2. Stockage local</h2>
+        <p>Tout le contenu utilisateur principal — sessions, points d'itinéraire, spots, photographies et collections — est stocké localement sur votre appareil dans une base de données SQLite (Room) à <code>/data/data/com.photosession.app/databases/</code> et dans le stockage de fichiers privé de l'application à <code>/data/data/com.photosession.app/files/spot_photos/</code>. Aucun de ces contenus n'est transmis à un serveur distant à moins que vous ne le partagiez ou ne l'exportiez explicitement.</p>
+        <p>L'application n'a pas de serveur distant pour le contenu généré par l'utilisateur.</p>
+
+        <h2>3. Autorisations</h2>
+        <p>L'application demande les autorisations Android suivantes :</p>
+        <ul>
+            <li><strong>ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION</strong> : requise pour enregistrer les coordonnées GPS lorsqu'une session est active.</li>
+            <li><strong>ACCESS_BACKGROUND_LOCATION</strong> : Nécessaire pour la continuité de l'enregistrement — l'application enregistre des sessions photographiques basées sur la localisation qui peuvent continuer lorsque l'utilisateur quitte l'application ou éteint l'écran. Sans la localisation en arrière-plan, la trace GPS de la session serait perdue.</li>
+            <li><strong>FOREGROUND_SERVICE / FOREGROUND_SERVICE_LOCATION / FOREGROUND_SERVICE_DATA_SYNC</strong> : requises pour maintenir le service d'enregistrement en arrière-plan et pour exécuter le service d'export/import comme opération de premier plan avec une notification visible.</li>
+            <li><strong>POST_NOTIFICATIONS</strong> (Android 13+) : requise pour afficher la notification d'enregistrement en cours et la notification de progression de sauvegarde.</li>
+            <li><strong>INTERNET</strong> : requise pour récupérer l'image de carte statique utilisée lors du rendu de l'image de partage (voir §4).</li>
+        </ul>
+
+        <h2>4. Services tiers</h2>
+        <p>L'application utilise les services tiers suivants :</p>
+        <ul>
+            <li><strong>Google Maps SDK et Google Static Maps API</strong> (Google LLC) : affiche la carte à l'intérieur de l'application et rend la tuile de carte statique incluse dans la génération de l'image de partage. La latitude/longitude de l'itinéraire est transmise aux serveurs de Google lors du rendu de l'image de partage. La politique de confidentialité de Google s'applique : <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>.</li>
+            <li><strong>Firebase Crashlytics</strong> (Google LLC) : reçoit des rapports de crashs anonymisés (traces d'appels, modèle d'appareil, version du système, version de l'application). Aucune information personnellement identifiable n'est intentionnellement envoyée. Traitement des données de Crashlytics : <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a>.</li>
+            <li><strong>Firebase Analytics</strong> (Google LLC) : reçoit des événements d'usage anonymisés (vues d'écran, interactions de fonctionnalités). Aucun identifiant publicitaire n'est collecté ; les identifiants publicitaires ne sont explicitement PAS utilisés par cette application.</li>
+        </ul>
+        <p>La collecte par Crashlytics et Analytics est désactivée dans les builds de debug. Les builds de production collectent la télémétrie par défaut ; le contrôle de désinscription en v1 est la désinstallation de l'application.</p>
+
+        <h2>5. Partage des données</h2>
+        <p>L'application partage des données uniquement avec les tiers nommés au §4 (Google Maps API, Firebase Crashlytics, Firebase Analytics) et uniquement aux fins décrites ci-dessus. L'application ne vend ni ne loue les données des utilisateurs à aucune partie. L'application ne diffuse PAS de publicités et ne collecte PAS d'identifiant publicitaire.</p>
+
+        <h2>6. Vos droits</h2>
+        <p>Vous avez le contrôle total de vos données :</p>
+        <ul>
+            <li><strong>Exporter vos données</strong> via Paramètres → DONNÉES → Exporter. L'application produit une seule archive <code>.zip</code> contenant chaque session, point d'itinéraire, spot, photographie, collection et association, exportée via le Storage Access Framework Android vers un emplacement de votre choix.</li>
+            <li><strong>Importer vos données</strong> sur le même appareil ou un autre via Paramètres → DONNÉES → Importer. L'archive est ajoutée (additif) ; les enregistrements existants sont préservés.</li>
+            <li><strong>Supprimer vos données</strong> en désinstallant l'application. Toutes les données stockées sur l'appareil sont supprimées par le système d'exploitation lors de la désinstallation.</li>
+            <li>L'application ne fait pas tourner de serveur distant, il n'y a donc aucun compte distant à supprimer ni aucune donnée distante dont demander une copie.</li>
+        </ul>
+
+        <h2>7. Confidentialité des enfants</h2>
+        <p>L'application est classée « Tout public » / PEGI 3 et ne collecte pas sciemment de données auprès de personnes de moins de 13 ans. Elle ne nécessite pas la création de compte, ne collecte pas d'informations personnelles (nom, e-mail, numéro de téléphone) et ne contient pas de publicité.</p>
+
+        <h2>8. Modifications</h2>
+        <p>Cette politique de confidentialité peut être mise à jour lorsque l'application évolue. La date d'effet ci-dessous reflète la dernière révision. Les changements significatifs seront mentionnés dans les notes de version de l'application (« Quoi de neuf » sur le Play Store).</p>
+
+        <h2>9. Contact</h2>
+        <p>Toute question concernant cette politique peut être posée sur le GitHub du développeur : <a href="https://github.com/kamhyh">github.com/kamhyh</a>.</p>
+
+        <p class="updated">Date d'effet : 2026-05-14 — Where Do I Take Photograph v1.0 (com.photosession.app)</p>
+    </div>
+</body>
+</html>
